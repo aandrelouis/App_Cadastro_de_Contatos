@@ -1,7 +1,19 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
+const { format,parse } = require('telefone');
+import {useState} from 'react';
 
 export default function App() {
+  const [nome, setNome] = useState('');
+  const [telefone, setTelefone] = useState('');
+  const [email, setEmail] = useState('');
+  const [endereco, setEndereco] = useState('');
+  const [cidade, setCidade] = useState('');
+  const [estado, setEstado] = useState('');
+  const [cep, setCep] = useState('');
+  const [numero, setNumero] = useState('');
+  const [complemento, setComplemento] = useState('');
+  
   return (
     <View style={styles.container}>
       <Text>Anota ai</Text>
@@ -12,58 +24,82 @@ export default function App() {
         style={styles.input}
         keyboardType="default"
         placeholder="Nome"
+        onChangeText={text => setNome(text)}
+        value={nome}
       />
 
+      {/* Telefone recebe apenas numeros - 14 numeros */}
       <TextInput 
         style={styles.input}
-        keyboardType="default"
+        keyboardType="numeric"
         placeholder="Telefone"
+        value={numero}
+        onChangeText={(text) => setNumero(text)}
       />
+
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Cep"
+        value={cep}
+        onChangeText={(text) => setCep(text)}
       />
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Logradouro"
+        value={endereco}
+        onChangeText={(text) => setEndereco(text)}
       />
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Número"
+
       />
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Bairro"
+
       />
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Complemento"
+        onChangeText={(text) => setComplemento(text)}
+        value={complemento}
+
       />
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Cidade"
+        onChangeText={(text) => setCidade(text)}
+        value={cidade}
       />
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Estado"
+        onChangeText={(text) => setEstado(text)}
+        value={estado}
       />
 
+      <TouchableOpacity style={styles.button}>
+        <Text style={styles.buttonText}>
+          Salvar
+        </Text>
+      </TouchableOpacity>
 
-      <Button title="Salvar" />
+
     </ScrollView>
 
     <StatusBar style="auto" />
@@ -92,5 +128,20 @@ const styles = StyleSheet.create({
   scroll:{
     width: '90%',
     backgroundColor: '#fff',
+  },
+  button:{
+    backgroundColor: 'red',
+    width: '100%',
+    height: 50,
+    borderRadius: 7,
+    alignContent: 'center',
+    justifyContent: 'center',
+    
+  },
+  buttonText:{
+    color: '#fff',
+    fontSize: 20,
+    fontWeight: 'bold',
+    alignSelf: 'center',
   }
 });

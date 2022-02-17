@@ -5047,6 +5047,11 @@ supports-preserve-symlinks-flag@^1.0.0:
   resolved "https://registry.yarnpkg.com/supports-preserve-symlinks-flag/-/supports-preserve-symlinks-flag-1.0.0.tgz#6eda4bd344a3c94aea376d4cc31bc77311039e09"
   integrity sha512-ot0WnXS9fgdkgIcePe6RHNk1WA8+muPa6cSjeR3V8K27q9BB1rTE3R1p7Hv0z1ZyAc8s6Vvv8DIyWf681MAt0w==
 
+telefone@^1.2.2:
+  version "1.2.2"
+  resolved "https://registry.yarnpkg.com/telefone/-/telefone-1.2.2.tgz#b52a46ed82597565816b958122899800e10b1974"
+  integrity sha512-+ROw3hxZXhcEeSN42PxQ/kPqkq4ji36/kYDYFwplQE/vUMT9i2XhzDSnz+8zGZFXV7WLqmWss/JJIpIhx1bLfg==
+
 temp@0.8.3:
   version "0.8.3"
   resolved "https://registry.yarnpkg.com/temp/-/temp-0.8.3.tgz#e0c6bc4d26b903124410e4fed81103014dfc1f59"
