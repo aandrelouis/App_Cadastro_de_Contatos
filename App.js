@@ -2,7 +2,9 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
 const { format,parse } = require('telefone');
 import {useState} from 'react';
-import Cep from 'cep-promise'
+
+import Cep from 'cep-promise';
+import MaskInput from 'react-native-mask-input';
 
 export default function App() {
   const [nome, setNome] = useState('');
@@ -47,16 +49,16 @@ export default function App() {
         style={styles.input}
         keyboardType="numeric"
         placeholder="Telefone"
-        value={numero}
-        onChangeText={(text) => setNumero(text)}
+        maxLength={14}
+        value={telefone.replace(/^(\d{2})(\d{5})(\d)/g,'($1)$2-$3')} // mascara para o telefone
+        onChangeText={(text) => setTelefone(text)}
       />
-
 
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Cep"
-        value={cep}
+        value={cep.replace(/^(\d{5})(\d)/, '$1-$2')} // formatação do cep usando uma mask
         onChangeText={(text) => setCep(text)}
         onEndEditing={usaCep}
       />
