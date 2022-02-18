@@ -9,14 +9,13 @@ import MaskInput from 'react-native-mask-input';
 export default function App() {
   const [nome, setNome] = useState('');
   const [telefone, setTelefone] = useState('');
-  const [email, setEmail] = useState('');
-  const [endereco, setEndereco] = useState('');
   const [cidade, setCidade] = useState('');
   const [estado, setEstado] = useState('');
   const [cep, setCep] = useState('');
   const [numero, setNumero] = useState('');
   const [complemento, setComplemento] = useState('');
   const [bairro, setBairro] = useState('');
+  const [logradouro, setLogradouro] = useState('');
   
 
   // função para através do cep, buscar o endereço completo e precher no formulário
@@ -24,10 +23,26 @@ export default function App() {
     Cep(cep).then(res => {
       setCidade(res.city);
       setEstado(res.state);
-      setEndereco(res.street);
+      setLogradouro(res.street);
       setBairro(res.neighborhood);
     })
   }
+
+  function handleSubmit(){
+    const dados = {
+      nome,
+      telefone,
+      cidade,
+      estado,
+      cep,
+      numero,
+      complemento,
+      bairro,
+      logradouro
+    }
+    console.log(dados);
+  }
+
 
 
   return (
@@ -65,18 +80,23 @@ export default function App() {
         onEndEditing={usaCep}
       />
 
+
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Logradouro"
-        value={endereco}
-        onChangeText={(text) => setEndereco(text)}
+        value={logradouro}
+        maxLength={100}
+        onChangeText={(text) => setLogradouro(text)}
       />
+
+      {/*Numero pode receber numeros e caracteres, ex: 304B*/}
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Número"
-
+        value={numero}
+        onChangeText={(text) => setNumero(text)}
       />
 
       <TextInput 
@@ -113,7 +133,7 @@ export default function App() {
         value={estado}
       />
 
-      <TouchableOpacity style={styles.button}>
+      <TouchableOpacity onPress={handleSubmit}  style={styles.button}>
         <Text style={styles.buttonText}>
           Salvar
         </Text>
