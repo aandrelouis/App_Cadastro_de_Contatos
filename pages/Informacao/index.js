@@ -25,6 +25,7 @@ export default function Informacao({navigation, route}) {
                 const dadosFormatados = JSON.stringify(dados);
 
                 await AsyncStorage.setItem(`@${quantidade}`, dadosFormatados);
+                loadCadastros();
             }else{
                 let quantidade = parseInt(quant);
                 
@@ -34,46 +35,47 @@ export default function Informacao({navigation, route}) {
                 
                 const dadosFormatados = JSON.stringify(dados);
 
-                console.log(quantidade);
-                console.log(dadosFormatados);
-
                 await AsyncStorage.setItem(`@${quantidade}`, dadosFormatados);
+                loadCadastros();
             }
         }   
         loadAsyncs();
     } , []);
 
 
+    //Essa função vai carregar os dados do AsyncStorage quando entrar na pagina
+    useEffect(() => {
+        loadCadastros();
+    },[]);
+    
     //Essa função vai pegar os dados do AsyncStorage e colocar no array
     //Vai executar logo quando entra nessa pagina
     //Vai atulizar o numero de cadastros que foram salvos no array
-    useEffect(() => {
-        async function loadCadastros(){
-            const quantidade = await AsyncStorage.getItem('@quantidade');
+    async function loadCadastros(){
+        const quantidade = await AsyncStorage.getItem('@quantidade');
 
-            if(quantidade == null){
-                setCadastros([]);
-                console.log('Não tem cadastros');
-            }
-            else{
-                const dados = [];
-                const quant = parseInt(quantidade);
-
-                for(let i = 1; i <= quant; i++){
-                    const dadosFormatados = await AsyncStorage.getItem(`@${i}`);
-                    
-                    if(dadosFormatados != null){
-                        const dadosJson = JSON.parse(dadosFormatados);
-                        dados.push(dadosJson);
-                    }
-                }
-
-                setCadastros(dados);
-                console.log(dados);
-            }
+        if(quantidade == null){
+            setCadastros([]);
+            console.log('Não tem cadastros');
         }
-        loadCadastros();
-    },[]);
+        else{
+            const dados = [];
+            const quant = parseInt(quantidade);
+
+            for(let i = 1; i <= quant; i++){
+                const dadosFormatados = await AsyncStorage.getItem(`@${i}`);
+                
+                if(dadosFormatados != null){
+                    const dadosJson = JSON.parse(dadosFormatados);
+                    dados.push(dadosJson);
+                }
+            }
+
+            setCadastros(dados);
+            console.log(dados);
+        }
+    }
+
 
 
 
