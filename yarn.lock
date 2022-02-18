@@ -1955,6 +1955,14 @@ capture-exit@^2.0.0:
   dependencies:
     rsvp "^4.8.4"
 
+cep-promise@^4.1.2:
+  version "4.1.2"
+  resolved "https://registry.yarnpkg.com/cep-promise/-/cep-promise-4.1.2.tgz#86741d19a7f2bc816e8ba831490b341230ec26ed"
+  integrity sha512-lXzVy0oZXVV4sg8m9qA5d+52/ycg8h8gnaSeT0eIunC/9ZDK01hoLUxU0H38+J6JoBR/WCkiahTiKUMG7yDXTg==
+  dependencies:
+    node-fetch "2.6.7"
+    unfetch "4.1.0"
+
 chalk@^2.0.0, chalk@^2.0.1, chalk@^2.4.2:
   version "2.4.2"
   resolved "https://registry.yarnpkg.com/chalk/-/chalk-2.4.2.tgz#cd42541677a54333cf541a49108c1432b44c9424"
@@ -5178,6 +5186,11 @@ ultron@1.0.x:
   version "1.0.2"
   resolved "https://registry.yarnpkg.com/ultron/-/ultron-1.0.2.tgz#ace116ab557cd197386a4e88f4685378c8b2e4fa"
   integrity sha1-rOEWq1V80Zc4ak6I9GhTeMiy5Po=
+
+unfetch@4.1.0:
+  version "4.1.0"
+  resolved "https://registry.yarnpkg.com/unfetch/-/unfetch-4.1.0.tgz#6ec2dd0de887e58a4dee83a050ded80ffc4137db"
+  integrity sha512-crP/n3eAPUJxZXM9T80/yv0YhkTEx2K1D3h7D1AJM6fzsWZrxdyRuLN0JH/dkZh1LNH8LxCnBzoPFCPbb2iGpg==
 
 unicode-canonical-property-names-ecmascript@^2.0.0:
   version "2.0.0"

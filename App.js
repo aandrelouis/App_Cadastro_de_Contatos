@@ -2,6 +2,7 @@ import { StatusBar } from 'expo-status-bar';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
 const { format,parse } = require('telefone');
 import {useState} from 'react';
+import Cep from 'cep-promise'
 
 export default function App() {
   const [nome, setNome] = useState('');
@@ -13,7 +14,20 @@ export default function App() {
   const [cep, setCep] = useState('');
   const [numero, setNumero] = useState('');
   const [complemento, setComplemento] = useState('');
+  const [bairro, setBairro] = useState('');
   
+
+  // função para através do cep, buscar o endereço completo e precher no formulário
+  function usaCep(){
+    Cep(cep).then(res => {
+      setCidade(res.city);
+      setEstado(res.state);
+      setEndereco(res.street);
+      setBairro(res.neighborhood);
+    })
+  }
+
+
   return (
     <View style={styles.container}>
       <Text>Anota ai</Text>
@@ -44,6 +58,7 @@ export default function App() {
         placeholder="Cep"
         value={cep}
         onChangeText={(text) => setCep(text)}
+        onEndEditing={usaCep}
       />
 
       <TextInput 
@@ -53,7 +68,6 @@ export default function App() {
         value={endereco}
         onChangeText={(text) => setEndereco(text)}
       />
-
       <TextInput 
         style={styles.input}
         keyboardType="default"
@@ -65,6 +79,8 @@ export default function App() {
         style={styles.input}
         keyboardType="default"
         placeholder="Bairro"
+        value={bairro}
+        onChangeText={(text) => setBairro(text)}
 
       />
 
