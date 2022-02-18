@@ -6,12 +6,14 @@ import ViewEditada from '../../components/View/index';
 
 export default function Informacao({navigation, route}) {
     const [cadastros, setCadastros] = useState([]);
+    const [loading, setLoading] = useState(false);
 
     //Essa função vai receber os dados do cadastro e salvar no AsyncStorage
     //Vai executar logo quando entra nessa pagina
     //Vai atulizar o numero de cadastros que foram salvos no array
     useEffect(() => {
         async function loadAsyncs(){
+            setLoading(true);
             const {dados} = route.params;
             
             const quant = await AsyncStorage.getItem('@quantidade');
@@ -24,6 +26,7 @@ export default function Informacao({navigation, route}) {
 
                 await AsyncStorage.setItem(`@${quantidade}`, dadosFormatados);
                 loadCadastros();
+                setLoading(false);
             }else{
                 let quantidade = parseInt(quant);
                 
@@ -35,6 +38,7 @@ export default function Informacao({navigation, route}) {
 
                 await AsyncStorage.setItem(`@${quantidade}`, dadosFormatados);
                 loadCadastros();
+                setLoading(false);
             }
         }   
         loadAsyncs();
@@ -50,11 +54,13 @@ export default function Informacao({navigation, route}) {
     //Vai executar logo quando entra nessa pagina
     //Vai atulizar o numero de cadastros que foram salvos no array
     async function loadCadastros(){
+        setLoading(true);
         const quantidade = await AsyncStorage.getItem('@quantidade');
 
         if(quantidade == null){
             setCadastros([]);
             console.log('Não tem cadastros');
+            setLoading(false);
         }
         else{
             const dados = [];
@@ -70,6 +76,7 @@ export default function Informacao({navigation, route}) {
             }
 
             setCadastros(dados);
+            setLoading(false);
         }
     }
 
@@ -79,32 +86,41 @@ export default function Informacao({navigation, route}) {
   return (
     <View style={styles.container}>
         <ScrollView style={styles.scroll}>
-        <View style={styles.boxInformation}>
+        {(loading==false)?
+        (
+            <View style={styles.boxInformation}>
+                <Text style={styles.texto}>
+                    Informações
+                </Text>
+
+                {/*Percorre o array de cadastros e mostra na tela*/}
+                {cadastros?.map((cadastro, index) => (
+                    cadastro != null ? (
+                        <View style={styles.box} key={index}>
+                            <ViewEditada identificador={"Nome"} valor={cadastro.nome}/>
+                            <ViewEditada identificador={"Telefone"} valor={cadastro.telefone}/>
+                            <ViewEditada identificador={"CEP"} valor={cadastro.cep}/>
+                            <ViewEditada identificador={"Cidade"} valor={cadastro.cidade}/>
+                            <ViewEditada identificador={"Estado"} valor={cadastro.estado}/>
+                            <ViewEditada identificador={"Logradouro"} valor={cadastro.logradouro}/>
+                            <ViewEditada identificador={"Número"} valor={cadastro.numero}/>
+                            <ViewEditada identificador={"Bairro"} valor={cadastro.bairro}/>
+                            <ViewEditada identificador={"Complemento"} valor={cadastro.complemento}/>
+                        </View>
+                    ) : (
+                    <>
+
+                    </>
+                    )
+                ))}
+        </View>):(
+        <View style={styles.boxLoading}>
             <Text style={styles.texto}>
-                Informações
+                Carregando...
             </Text>
-
-            {/*Percorre o array de cadastros e mostra na tela*/}
-            {cadastros?.map((cadastro, index) => (
-                cadastro != null ? (
-                    <View style={styles.box} key={index}>
-                        <ViewEditada identificador={"Nome"} valor={cadastro.nome}/>
-                        <ViewEditada identificador={"Telefone"} valor={cadastro.telefone}/>
-                        <ViewEditada identificador={"CEP"} valor={cadastro.cep}/>
-                        <ViewEditada identificador={"Cidade"} valor={cadastro.cidade}/>
-                        <ViewEditada identificador={"Estado"} valor={cadastro.estado}/>
-                        <ViewEditada identificador={"Logradouro"} valor={cadastro.logradouro}/>
-                        <ViewEditada identificador={"Número"} valor={cadastro.numero}/>
-                        <ViewEditada identificador={"Bairro"} valor={cadastro.bairro}/>
-                        <ViewEditada identificador={"Complemento"} valor={cadastro.complemento}/>
-                    </View>
-                ) : (
-                   <>
-
-                   </>
-                )
-            ))}
         </View>
+        )}
+
         </ScrollView>
     </View>
   );
@@ -142,5 +158,12 @@ const styles = StyleSheet.create({
     },
     Alura:{
         color: '#141C83',
-    }
+    },
+    boxLoading:{
+        width: '100%',
+        alignItems: 'center',
+        color: '#141C83',
+        justifyContent: 'center',
+    },
+
 });

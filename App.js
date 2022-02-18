@@ -5,7 +5,11 @@ import {createNativeStackNavigator } from '@react-navigation/native-stack';
 import { createStackNavigator } from '@react-navigation/stack';
 
 
+//Páginas do app
+//Cadastro de informações das empresas
 import  Cadastro  from './pages/Cadastro/index';
+
+//Mostra todas as informações cadastradas
 import Informacao  from './pages/Informacao/index';
 
 export default function App() {

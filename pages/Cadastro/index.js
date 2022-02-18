@@ -1,6 +1,7 @@
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity , Image, Alert} from 'react-native';
 const { format,parse } = require('telefone');
 import {useState} from 'react';
+import InputPadrao from '../../components/Input/index';
 
 import Cep from 'cep-promise';
 
@@ -28,6 +29,10 @@ export default function Cadastro({ navigation }) {
     })
   }
 
+
+  // função para colocar todos os dados do formulário em um objeto
+  // Depois fazer uma verificação para ver se todas validações foram feitas
+  //depois chama a rota de informações enviando o objeto como parâmetro
   function handleSubmit(){
     const dados = {
       nome,
@@ -91,13 +96,7 @@ export default function Cadastro({ navigation }) {
       <View style={styles.divScroll}>
       
      {/* Campo Obrigatório*/}
-      <TextInput 
-        style={styles.input}
-        keyboardType="default"
-        placeholder="Nome"
-        onChangeText={text => setNome(text)}
-        value={nome}
-      />
+      <InputPadrao placeholder="Nome" value={nome} setValue={setNome} keyboardType={'default'}/>
 
       {/* Telefone recebe apenas numeros - 14 numeros */}
       {/* Campo Obrigatório*/}
@@ -137,55 +136,23 @@ export default function Cadastro({ navigation }) {
 
       {/*Numero pode receber numeros e caracteres, ex: 304B*/}
       {/* Campo Obrigatório*/}
-      <TextInput 
-        style={styles.input}
-        keyboardType="default"
-        placeholder="Número"
-        value={numero}
-        onChangeText={(text) => setNumero(text)}
-      />
+      <InputPadrao placeholder="Número" value={numero} setValue={setNumero} keyboardType={'default'}/>
 
       {/*Bairro pode receber texto e numeros*/}
-      <TextInput 
-        style={styles.input}
-        keyboardType="default"
-        placeholder="Bairro"
-        value={bairro}
-        onChangeText={(text) => setBairro(text)}
-
-      />
+      <InputPadrao placeholder="Bairro" value={bairro} setValue={setBairro} keyboardType={'default'}/>
 
       {/*Complemento pode receber texto e numeros*/}
-      <TextInput 
-        style={styles.input}
-        keyboardType="default"
-        placeholder="Complemento"
-        onChangeText={(text) => setComplemento(text)}
-        value={complemento}
-      />
+      <InputPadrao placeholder="Complemento" value={complemento} setValue={setComplemento} keyboardType={'default'}/>
 
+      {/*Cidade pode receber texto e numeros*/}
+      <InputPadrao placeholder="Cidade" value={cidade} setValue={setCidade} keyboardType={'default'}/>
 
-      <TextInput 
-        style={styles.input}
-        keyboardType="default"
-        placeholder="Cidade"
-        onChangeText={(text) => setCidade(text)}
-        value={cidade}
-      />
-
-      <TextInput 
-        style={styles.input}
-        keyboardType="default"
-        placeholder="Estado"
-        onChangeText={(text) => setEstado(text)}
-        value={estado}
-      />
+      <InputPadrao placeholder="Estado" value={estado} setValue={setEstado} keyboardType={'default'}/>
 
       <TouchableOpacity onPress={handleSubmit}  style={styles.button}>
         <Text style={styles.buttonText}>
           Salvar
         </Text>
-
       </TouchableOpacity>
 
       </View>
