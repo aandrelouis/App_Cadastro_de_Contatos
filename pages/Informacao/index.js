@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity , Image} from 'react-native';
+import { AsyncStorage } from 'react-native';
 
 
 export default function Informacao({navigation, route}) {
