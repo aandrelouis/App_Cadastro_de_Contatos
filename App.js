@@ -1,10 +1,10 @@
 import { StatusBar } from 'expo-status-bar';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity , Image} from 'react-native';
 const { format,parse } = require('telefone');
 import {useState} from 'react';
 
 import Cep from 'cep-promise';
-import MaskInput from 'react-native-mask-input';
+
 
 export default function App() {
   const [nome, setNome] = useState('');
@@ -16,6 +16,7 @@ export default function App() {
   const [complemento, setComplemento] = useState('');
   const [bairro, setBairro] = useState('');
   const [logradouro, setLogradouro] = useState('');
+  
   
 
   // função para através do cep, buscar o endereço completo e precher no formulário
@@ -43,14 +44,25 @@ export default function App() {
     console.log(dados);
   }
 
+  function addMascara(valor){
+    return  valor.replace(/^(\d{2})(\d{5})(\d)/g,'($1)$2-$3');
+  }
+
 
 
   return (
     <View style={styles.container}>
-      <Text>Anota ai</Text>
+
+      <View>
+        <Image 
+          source={require('./assets/logo/anotaLogo.png')} 
+          style={styles.logo}/>
+      </View>  
+
+
       
     <ScrollView style={styles.scroll}>
-
+      <View style={styles.divScroll}>
       <TextInput 
         style={styles.input}
         keyboardType="default"
@@ -65,7 +77,7 @@ export default function App() {
         keyboardType="numeric"
         placeholder="Telefone"
         maxLength={14}
-        value={telefone.replace(/^(\d{2})(\d{5})(\d)/g,'($1)$2-$3')} // mascara para o telefone
+        value={addMascara(telefone)} // criar mascara para o telefone
         onChangeText={(text) => setTelefone(text)}
       />
 
@@ -73,7 +85,7 @@ export default function App() {
       <TextInput 
         style={styles.input}
         keyboardType="number-pad"
-        placeholder="Cep"
+        placeholder="CEP"
         maxLength={8}
         value={cep}
         onChangeText={(text) => setCep(text)}
@@ -89,6 +101,7 @@ export default function App() {
         maxLength={100}
         onChangeText={(text) => setLogradouro(text)}
       />
+
 
       {/*Numero pode receber numeros e caracteres, ex: 304B*/}
       <TextInput 
@@ -137,8 +150,10 @@ export default function App() {
         <Text style={styles.buttonText}>
           Salvar
         </Text>
+
       </TouchableOpacity>
 
+      </View>
 
     </ScrollView>
 
@@ -151,27 +166,35 @@ export default function App() {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#fff',
+    backgroundColor: '#ffffffff',
     alignItems: 'center',
     marginTop: 50,
   },
+  logo:{
+    width: 200,
+    height: 200,
+    
+  },
   input:{
-    backgroundColor: 'red',
-    width: '100%',
+    backgroundColor: '#ffffffff',
+    width: '90%',
     height: 55,
     borderRadius: 10,
     marginTop: 10,
     marginBottom: 10,
     padding: 10,
-    color: '#fff',
+    color: '#000000',
+    fontSize: 16,
+    shadowColor: 'grey',
+    elevation: 3,
   },
   scroll:{
-    width: '90%',
-    backgroundColor: '#fff',
+    width: '100%',
+    backgroundColor: '#ffffffff',
   },
   button:{
-    backgroundColor: 'red',
-    width: '100%',
+    backgroundColor: '#141C83',
+    width: '90%',
     height: 50,
     borderRadius: 7,
     alignContent: 'center',
@@ -179,9 +202,18 @@ const styles = StyleSheet.create({
     
   },
   buttonText:{
-    color: '#fff',
+    color: '#ffffffff',
     fontSize: 20,
     fontWeight: 'bold',
     alignSelf: 'center',
+  },
+  divScroll:{
+    width: '100%',
+    padding: 10,  
+    alignItems: 'center',
+
+  },
+  Alura:{
+    color: '#141C83',
   }
 });
