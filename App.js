@@ -54,11 +54,13 @@ export default function App() {
         onChangeText={(text) => setTelefone(text)}
       />
 
+      {/* Cep recebe apenas 8 caracteres e atualiza os outros campos*/}
       <TextInput 
         style={styles.input}
-        keyboardType="default"
+        keyboardType="number-pad"
         placeholder="Cep"
-        value={cep.replace(/^(\d{5})(\d)/, '$1-$2')} // formatação do cep usando uma mask
+        maxLength={8}
+        value={cep}
         onChangeText={(text) => setCep(text)}
         onEndEditing={usaCep}
       />
