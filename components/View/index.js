@@ -1,22 +1,28 @@
 import React from 'react';
-import { View , Text , TextInput} from 'react-native';
+import { View , Text , StyleSheet} from 'react-native';
 
 
 function ViewEditada(props){
     return (
-        <View>
-        <Text>Input</Text>
+        <View style={styles.boxHeader}>
+            <Text style={styles.strong}>{props.identificador}:</Text>
+            <Text>{props.valor}</Text>
         </View>
     );
 }
 
 const styles = StyleSheet.create({
-    container: {
-      flex: 1,
-      backgroundColor: '#ffffffff',
-      alignItems: 'center',
+    boxHeader:{
+        flexDirection: 'row',
+        justifyContent: 'space-between',
+        marginBottom: 10,
+        fontSize: 20,
+        width: '80%',
     },
-    
+    strong:{
+        fontWeight: 'bold',
+        fontSize: 16,
+    },
   });
   
 

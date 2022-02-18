@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity , Image} from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity , Image, Alert} from 'react-native';
 const { format,parse } = require('telefone');
 import {useState} from 'react';
 
@@ -18,7 +18,7 @@ export default function Cadastro({ navigation }) {
   
   
 
-  // função para através do cep, buscar o endereço completo e precher no formulário
+  // função para através do cep, buscar o endereço completo e precher no formulário os campos
   function usaCep(){
     Cep(cep).then(res => {
       setCidade(res.city);
@@ -41,8 +41,36 @@ export default function Cadastro({ navigation }) {
       logradouro
     }
     
-    navigation.navigate('Informacao', {dados});
+
+    if(nome == ""){
+      Alert.alert('Preencha o campo nome');
+      return false;
+    }
+    else if(telefone == '' || telefone.length < 14){
+      Alert.alert('Preencha o campo telefone com 14 dígitos','Formato: (XX)XXXXX-XXXX');
+      return false;
+    }
+    else if(cep == ''){
+      Alert.alert('Preencha o campo cep com 8 digitos');
+      return false;
+    }
+    else if(numero == ''){
+      Alert.alert('Preencha o campo numero');
+      return false;
+    }
+    else if(logradouro == '' || logradouro == null || logradouro.length < 10){
+      Alert.alert('Preencha o campo logradouro com no mínimo 10 caracteres');
+      return false;
+    }
+    else if(cep == '' || cep == null || cep.length < 8){
+      Alert.alert('Preencha o campo cep com no mínimo 8 caracteres');
+      return false;
+    }
+    else{
+      navigation.navigate('Informacao', {dados});
+    }
   }
+
 
   function addMascara(valor){
     return  valor.replace(/^(\d{2})(\d{5})(\d)/g,'($1)$2-$3');
@@ -61,6 +89,8 @@ export default function Cadastro({ navigation }) {
       
     <ScrollView style={styles.scroll}>
       <View style={styles.divScroll}>
+      
+     {/* Campo Obrigatório*/}
       <TextInput 
         style={styles.input}
         keyboardType="default"
@@ -70,38 +100,43 @@ export default function Cadastro({ navigation }) {
       />
 
       {/* Telefone recebe apenas numeros - 14 numeros */}
+      {/* Campo Obrigatório*/}
       <TextInput 
         style={styles.input}
         keyboardType="numeric"
         placeholder="Telefone"
-        maxLength={14}
+        maxLength={14} //recebe até 14 caracteres contando com o "()" e "-", ex: (11)99999-9999"
         value={addMascara(telefone)} // criar mascara para o telefone
         onChangeText={(text) => setTelefone(text)}
       />
 
-      {/* Cep recebe apenas 8 caracteres e atualiza os outros campos*/}
+      {/* Cep recebe apenas 8 caracteres(numeros) e atualiza os outros campos*/}
+      {/* Campo Obrigatório*/}
       <TextInput 
         style={styles.input}
         keyboardType="number-pad"
         placeholder="CEP"
-        maxLength={8}
+        maxLength={8} //recebe apenas 8 caracteres
         value={cep}
         onChangeText={(text) => setCep(text)}
         onEndEditing={usaCep}
       />
 
 
+      {/* Logradouro irá receber texto e numero*/}
+      {/* Campo Obrigatório*/}
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Logradouro"
         value={logradouro}
-        maxLength={100}
+        maxLength={100} //recebe até 100 caracteres e pelo menos 10 caracteres
         onChangeText={(text) => setLogradouro(text)}
       />
 
 
       {/*Numero pode receber numeros e caracteres, ex: 304B*/}
+      {/* Campo Obrigatório*/}
       <TextInput 
         style={styles.input}
         keyboardType="default"
@@ -110,6 +145,7 @@ export default function Cadastro({ navigation }) {
         onChangeText={(text) => setNumero(text)}
       />
 
+      {/*Bairro pode receber texto e numeros*/}
       <TextInput 
         style={styles.input}
         keyboardType="default"
@@ -119,14 +155,15 @@ export default function Cadastro({ navigation }) {
 
       />
 
+      {/*Complemento pode receber texto e numeros*/}
       <TextInput 
         style={styles.input}
         keyboardType="default"
         placeholder="Complemento"
         onChangeText={(text) => setComplemento(text)}
         value={complemento}
-
       />
+
 
       <TextInput 
         style={styles.input}

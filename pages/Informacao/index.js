@@ -1,13 +1,11 @@
 import { useEffect, useState } from 'react';
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
+import ViewEditada from '../../components/View/index';
 
 
 export default function Informacao({navigation, route}) {
     const [cadastros, setCadastros] = useState([]);
-
-
-
 
     //Essa função vai receber os dados do cadastro e salvar no AsyncStorage
     //Vai executar logo quando entra nessa pagina
@@ -72,7 +70,6 @@ export default function Informacao({navigation, route}) {
             }
 
             setCadastros(dados);
-            console.log(dados);
         }
     }
 
@@ -87,65 +84,26 @@ export default function Informacao({navigation, route}) {
                 Informações
             </Text>
 
+            {/*Percorre o array de cadastros e mostra na tela*/}
             {cadastros?.map((cadastro, index) => (
                 cadastro != null ? (
                     <View style={styles.box} key={index}>
-                        <View style={styles.boxHeaderTitle}>
-                            <Text style={styles.strong}>Nome:</Text>
-                            <Text>{cadastro.nome}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}>
-                            <Text style={styles.strong}>Telefone:</Text>
-                            <Text>{cadastro.telefone}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}>
-                            <Text style={styles.strong}>Cidade:</Text>
-                            <Text>{cadastro.cidade}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}>
-                            <Text style={styles.strong}>Estado:</Text>
-                            <Text>{cadastro.estado}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}>
-                            <Text style={styles.strong}>Bairro:</Text>
-                            <Text>{cadastro.bairro}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}>
-                            <Text style={styles.strong}>Rua:</Text>
-                            <Text>{cadastro.logradouro}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}> 
-                            <Text style={styles.strong}>Número:</Text>    
-                            <Text>{cadastro.numero}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}>
-
-                            <Text style={styles.strong}>Complemento:</Text>
-                            <Text>{cadastro.complemento}</Text>
-                        </View>
-
-                        <View style={styles.boxHeader}>
-                            <Text style={styles.strong}>CEP:</Text>
-                            <Text>{cadastro.cep}</Text>
-                        </View>
-
+                        <ViewEditada identificador={"Nome"} valor={cadastro.nome}/>
+                        <ViewEditada identificador={"Telefone"} valor={cadastro.telefone}/>
+                        <ViewEditada identificador={"CEP"} valor={cadastro.cep}/>
+                        <ViewEditada identificador={"Cidade"} valor={cadastro.cidade}/>
+                        <ViewEditada identificador={"Estado"} valor={cadastro.estado}/>
+                        <ViewEditada identificador={"Logradouro"} valor={cadastro.logradouro}/>
+                        <ViewEditada identificador={"Número"} valor={cadastro.numero}/>
+                        <ViewEditada identificador={"Bairro"} valor={cadastro.bairro}/>
+                        <ViewEditada identificador={"Complemento"} valor={cadastro.complemento}/>
                     </View>
                 ) : (
-                    <View key={index}>
-                        
-                    </View>
+                   <>
+
+                   </>
                 )
-
             ))}
-
-
         </View>
         </ScrollView>
     </View>
@@ -153,11 +111,11 @@ export default function Informacao({navigation, route}) {
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffffff',
-    alignItems: 'center',
-  },
+    container: {
+        flex: 1,
+        backgroundColor: '#ffffffff',
+        alignItems: 'center',
+    },
     box: {
         backgroundColor: '#ffffffff',
         margin: 10,
@@ -176,30 +134,11 @@ const styles = StyleSheet.create({
     },
     scroll:{
         width: '100%',
-
     },
     boxInformation:{
         width: '100%',
         alignItems: 'center',
         marginTop: 30,
-    },
-    boxHeader:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-        fontSize: 20,
-        width: '80%',
-    },
-    boxHeaderTitle:{
-        flexDirection: 'row',
-        justifyContent: 'space-between',
-        marginBottom: 10,
-        fontSize: 30,
-        width: '80%',
-    },
-    strong:{
-        fontWeight: 'bold',
-        fontSize: 16,
     },
     Alura:{
         color: '#141C83',
