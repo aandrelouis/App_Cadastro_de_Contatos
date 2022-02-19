@@ -2,8 +2,6 @@ import * as React from 'react';
 import { NavigationContainer } from '@react-navigation/native';
 import { View, Text } from 'react-native';
 import {createNativeStackNavigator } from '@react-navigation/native-stack';
-import { createStackNavigator } from '@react-navigation/stack';
-
 
 //Páginas do app
 //Cadastro de informações das empresas

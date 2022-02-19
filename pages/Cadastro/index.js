@@ -1,8 +1,6 @@
 import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity , Image, Alert} from 'react-native';
-const { format,parse } = require('telefone');
 import {useState} from 'react';
 import InputPadrao from '../../components/Input/index';
-
 import Cep from 'cep-promise';
 
 
@@ -46,7 +44,6 @@ export default function Cadastro({ navigation }) {
       logradouro
     }
     
-
     if(nome == ""){
       Alert.alert('Preencha o campo nome');
       return false;
@@ -72,11 +69,13 @@ export default function Cadastro({ navigation }) {
       return false;
     }
     else{
+      console.log(dados);
       navigation.navigate('Informacao', {dados});
     }
   }
 
-
+  //essa função irá dividir o número de telefone em 3 grupos cada um com um certo numero de digitos
+  //depois ele organiza os grupos colocando sinais entre eles
   function addMascara(valor){
     return  valor.replace(/^(\d{2})(\d{5})(\d)/g,'($1)$2-$3');
   }
