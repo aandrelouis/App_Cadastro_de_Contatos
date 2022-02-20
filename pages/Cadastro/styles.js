@@ -66,7 +66,7 @@ export const styles = StyleSheet.create({
       margin: 20,
       backgroundColor: "white",
       borderRadius: 20,
-      padding: 35,
+      padding: 30,
       alignItems: "center",
       shadowColor: "#000",
       shadowOffset: {
@@ -83,11 +83,20 @@ export const styles = StyleSheet.create({
       elevation: 4
     },
     buttonClose: {
+      backgroundColor: "red",
+      marginTop: 10,
+      marginBottom: 10,
+      alignSelf: "center",
+      width: '90%',
+  
+    },
+    buttonSave: {
       backgroundColor: "#141C83",
       marginTop: 10,
       marginBottom: 10,
       alignSelf: "center",
       width: '90%',
+      marginHorizontal: 5,
   
     },
     textStyle: {
@@ -104,6 +113,19 @@ export const styles = StyleSheet.create({
       alignContent: 'center',
       alignSelf: 'flex-start',
       marginLeft: 20,
+      marginHorizontal: 5,
+    },
+    boxBotoes:{
+      flexDirection: 'row',
+      justifyContent: 'space-between',
+      width: '50%',
+      marginTop: 10,
+      padding:10,
+    },
+    viewInfo:{
+      flexDirection: 'column',
+      width: '90%',
+      marginTop: 10,
     },
   });
   

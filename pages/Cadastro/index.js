@@ -3,10 +3,15 @@ import { StyleSheet,
         Button, ScrollView, 
         TouchableOpacity , Image, Alert, Modal, Pressable} from 'react-native';
 import {useState} from 'react';
-import InputPadrao from '../../components/Input/index';
 import Cep from 'cep-promise';
 import Icon from 'react-native-vector-icons/FontAwesome';
 
+
+//components
+import InputPadrao from '../../components/Input/index';
+import ViewEditada from '../../components/View/index.js';
+
+//styles and functions
 import {styles} from './styles.js';
 import {addMascara} from './function.js';
 
@@ -21,6 +26,7 @@ export default function Cadastro({ navigation }) {
   const [bairro, setBairro] = useState('');
   const [logradouro, setLogradouro] = useState('');
   const [modalVisible, setModalVisible] = useState(false);
+  const [modalFinal, setModalFinal] = useState(false);
   const [problema, setProblema] = useState("");
   
   
@@ -39,19 +45,7 @@ export default function Cadastro({ navigation }) {
   // função para colocar todos os dados do formulário em um objeto
   // Depois fazer uma verificação para ver se todas validações foram feitas
   //depois chama a rota de informações enviando o objeto como parâmetro
-  function handleSubmit(){
-    const dados = {
-      nome,
-      telefone,
-      cidade,
-      estado,
-      cep,
-      numero,
-      complemento,
-      bairro,
-      logradouro
-    }
-    
+  function handleSubmit(){    
     if(nome == ""){
       setProblema("O campo nome é obrigatório");
       setModalVisible(true);
@@ -83,8 +77,9 @@ export default function Cadastro({ navigation }) {
       return false;
     }
     else{
-      console.log(dados);
-      navigation.navigate('Informacao', {dados});
+   
+      setModalFinal(true);
+      //navigation.navigate('Informacao', {dados});
     }
   }
 
@@ -92,6 +87,23 @@ export default function Cadastro({ navigation }) {
   function navigationHome(){
     navigation.navigate('Home');
   }
+
+  function finalizaCadastro(){
+    const dados = {
+      nome,
+      telefone,
+      cidade,
+      estado,
+      cep,
+      numero,
+      complemento,
+      bairro,
+      logradouro
+    }
+    navigation.navigate('Informacao', {dados});
+    setModalFinal(!modalFinal);
+  }
+
 
 
 
@@ -197,6 +209,48 @@ export default function Cadastro({ navigation }) {
                 >
                 <Text style={styles.textStyle}>OK</Text>
               </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+      <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalFinal}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalFinal);
+        }}
+        >
+        <View style={styles.viewTelaModal}>
+            <View style={styles.modalView}>
+              <View style={styles.viewInfo}>
+                <ViewEditada identificador={"Nome"} valor={nome}/>
+                <ViewEditada identificador={"Telefone"} valor={telefone}/>
+                <ViewEditada identificador={"CEP"} valor={cep}/>
+                <ViewEditada identificador={"Cidade"} valor={cidade}/>
+                <ViewEditada identificador={"Estado"} valor={estado}/>
+                <ViewEditada identificador={"Logradouro"} valor={logradouro}/>
+                <ViewEditada identificador={"Número"} valor={numero}/>
+                <ViewEditada identificador={"Bairro"} valor={bairro}/>
+                <ViewEditada identificador={"Complemento"} valor={complemento}/>
+              </View>
+
+              <View style={styles.boxBotoes}>
+                <Pressable
+                  style={[styles.buttonModal, styles.buttonClose]}
+                  onPress={() => setModalFinal(!modalFinal)}
+                  >
+                  <Text style={styles.textStyle}>Cancelar</Text>
+                </Pressable>
+
+                <Pressable
+                  style={[styles.buttonModal, styles.buttonSave]}
+                  onPress={() => finalizaCadastro()}
+                  >
+                  <Text style={styles.textStyle}>Salvar</Text>
+                </Pressable>
+              </View>
           </View>
         </View>
       </Modal>
