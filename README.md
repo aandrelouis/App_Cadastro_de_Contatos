@@ -13,6 +13,7 @@ Aplicação criada para tornar mais prático o cadastro de empresas e depois a c
 
 ![foto3](https://github.com/aandrelouis/App_Cadastro_de_Empresas/blob/main/img/App1.svg)
 
+- [Apk][apk]
 
 ## :rocket: Tecnologias
 
@@ -51,3 +52,4 @@ $ expo start
 [expo]: https://expo.io/
 [rn]: https://facebook.github.io/react-native/
 [yarn]: https://yarnpkg.com/
+.[apk]: https://drive.google.com/drive/folders/1snCT9Ih-hf2-ciqQ2VJ2nDnatd0deYN8?usp=sharing
