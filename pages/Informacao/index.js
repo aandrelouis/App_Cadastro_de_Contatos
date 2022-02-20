@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ViewEditada from '../../components/View/index';
 
@@ -14,11 +14,13 @@ export default function Informacao({navigation, route}) {
     useEffect(() => {
         async function loadAsyncs(){
             setLoading(true);
-            const {dados} = route.params;
+            if(route.params){
+                const {dados} = route.params;
+            }
             
             const quant = await AsyncStorage.getItem('@quantidade');
             
-            if(quant == null){
+            if(quant == null && route.params != null){
                 let quantidade = 1;
                 await AsyncStorage.setItem('@quantidade', '1');
                 
@@ -27,7 +29,7 @@ export default function Informacao({navigation, route}) {
                 await AsyncStorage.setItem(`@${quantidade}`, dadosFormatados);
                 loadCadastros();
                 setLoading(false);
-            }else{
+            }else if(quant != null && route.params != null){
                 let quantidade = parseInt(quant);
                 
                 quantidade = quantidade + 1;
@@ -57,12 +59,12 @@ export default function Informacao({navigation, route}) {
         setLoading(true);
         const quantidade = await AsyncStorage.getItem('@quantidade');
 
-        if(quantidade == null){
+        if(quantidade == null || quantidade == '0'){
             setCadastros([]);
             console.log('Não tem cadastros');
             setLoading(false);
         }
-        else{
+        else if(quantidade != null){
             const dados = [];
             const quant = parseInt(quantidade);
 
@@ -115,7 +117,7 @@ export default function Informacao({navigation, route}) {
                 ))}
         </View>):(
         <View style={styles.boxLoading}>
-            <Text style={styles.texto}>
+            <Text style={styles.textoLoading}>
                 Carregando...
             </Text>
         </View>
@@ -161,9 +163,15 @@ const styles = StyleSheet.create({
     },
     boxLoading:{
         width: '100%',
+        height: '100%',
         alignItems: 'center',
-        color: '#141C83',
         justifyContent: 'center',
+        marginTop: 30,
     },
-
+    textoLoading:{
+        fontSize: 25,
+        fontWeight: 'bold',
+        margin: 10,
+        color: '#141C83',
+    },
 });

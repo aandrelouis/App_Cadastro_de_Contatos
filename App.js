@@ -10,6 +10,9 @@ import  Cadastro  from './pages/Cadastro/index';
 //Mostra todas as informações cadastradas
 import Informacao  from './pages/Informacao/index';
 
+//Página inicial
+import Home  from './pages/Home/index';
+
 export default function App() {
   
   const Stack = createNativeStackNavigator();
@@ -19,6 +22,14 @@ export default function App() {
     <NavigationContainer>
       <Stack.Navigator>
         {/*Desabilita o Header da navegação -  headerShown: false*/}
+          <Stack.Screen
+            name="Home"
+            component={Home}
+            options={{
+              headerShown: false,
+            }}
+          />
+
         <Stack.Screen 
           name="Cadastro" 
           component={Cadastro}
@@ -39,3 +50,4 @@ export default function App() {
     </NavigationContainer>
   );
 }
+
