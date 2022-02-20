@@ -6,7 +6,7 @@ function ViewEditada(props){
     return (
         <View style={styles.boxHeader}>
             <Text style={styles.strong}>{props.identificador}:</Text>
-            <Text>{props.valor}</Text>
+            <Text style={styles.valor}>{props.valor}</Text>
         </View>
     );
 }
@@ -23,6 +23,10 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         fontSize: 16,
     },
+    valor:{
+        width: '50%',
+
+    }
   });
   
 

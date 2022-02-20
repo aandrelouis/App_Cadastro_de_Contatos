@@ -5,7 +5,10 @@ import { StyleSheet,
 import {useState} from 'react';
 import InputPadrao from '../../components/Input/index';
 import Cep from 'cep-promise';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
+import {styles} from './styles.js';
+import {addMascara} from './function.js';
 
 export default function Cadastro({ navigation }) {
   const [nome, setNome] = useState('');
@@ -85,21 +88,27 @@ export default function Cadastro({ navigation }) {
     }
   }
 
-  //essa função irá dividir o número de telefone em 3 grupos cada um com um certo numero de digitos
-  //depois ele organiza os grupos colocando sinais entre eles
-  function addMascara(valor){
-    return  valor.replace(/^(\d{2})(\d{5})(\d)/g,'($1)$2-$3');
+  //redirecionar para a pagina home
+  function navigationHome(){
+    navigation.navigate('Home');
   }
+
+
 
   return (
     <View style={styles.container}>
 
-      <View>
+      <View style={styles.boxLogo}>
+        <TouchableOpacity onPress={navigationHome} style={styles.botaoVoltar}>
+          <Text style={styles.icon}>
+              <Icon name="arrow-left" size={25} color="#000" />
+          </Text>
+        </TouchableOpacity>
+
         <Image 
           source={require('../../assets/logo/anotaLogo.png')} 
           style={styles.logo}/>
       </View>  
-
 
       
     <ScrollView style={styles.scroll}>
@@ -184,113 +193,14 @@ export default function Cadastro({ navigation }) {
               <Text>{problema}</Text>
               <Pressable
                 style={[styles.buttonModal, styles.buttonClose]}
-                onPress={() => {setModalVisible(!modalVisible)}}
+                onPress={() => setModalVisible(!modalVisible)}
                 >
                 <Text style={styles.textStyle}>OK</Text>
               </Pressable>
           </View>
         </View>
       </Modal>
-
-
-
-
     </View>
   );
 }
 
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    backgroundColor: '#ffffffff',
-    alignItems: 'center',
-  },
-  logo:{
-    width: 200,
-    height: 200,
-    
-  },
-  input:{
-    backgroundColor: '#ffffffff',
-    width: '90%',
-    height: 55,
-    borderRadius: 10,
-    marginTop: 10,
-    marginBottom: 10,
-    padding: 10,
-    color: '#000000',
-    fontSize: 16,
-    shadowColor: 'grey',
-    shadowOffset: {
-      width: 0,
-      height: 2,
-    },
-    shadowOpacity: 0.4,
-    elevation: 8,
-  },
-  scroll:{
-    width: '100%',
-    backgroundColor: '#ffffffff',
-  },
-  button:{
-    backgroundColor: '#141C83',
-    width: '90%',
-    height: 50,
-    borderRadius: 7,
-    alignContent: 'center',
-    justifyContent: 'center',
-  },
-  buttonText:{
-    color: '#ffffffff',
-    fontSize: 20,
-    fontWeight: 'bold',
-    alignSelf: 'center',
-  },
-  divScroll:{
-    width: '100%',
-    padding: 10,  
-    alignItems: 'center',
-
-  },
-  Alura:{
-    color: '#141C83',
-  },
-  modalView: {
-    margin: 20,
-    backgroundColor: "white",
-    borderRadius: 20,
-    padding: 35,
-    alignItems: "center",
-    shadowColor: "#000",
-    shadowOffset: {
-      width: 0,
-      height: 2
-    },
-    shadowOpacity: 0.25,
-    shadowRadius: 4,
-    elevation: 5
-  },
-  buttonModal: {
-    borderRadius: 12,
-    padding: 10,
-    elevation: 4
-  },
-  buttonClose: {
-    backgroundColor: "#141C83",
-    marginTop: 10,
-    marginBottom: 10,
-    alignSelf: "center",
-    width: '90%',
-
-  },
-  textStyle: {
-    color: "#ffffffff",
-    fontWeight: "bold",
-    textAlign: "center"
-  },
-  viewTelaModal: {
-    flex: 1,
-    alignItems: "center",
-    justifyContent: "center",
-  },
-});
