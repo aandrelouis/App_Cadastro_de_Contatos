@@ -21,8 +21,9 @@ export default function Informacao({navigation, route}) {
     useEffect(() => {
         async function loadAsyncs(){
             setLoading(true);
-            if(route.params){
-                const {dados} = route.params;
+            var dados=null;
+            if(route.params != null){
+                dados = route.params.dados;
             }
             
             const quant = await AsyncStorage.getItem('@quantidade');
@@ -89,6 +90,11 @@ export default function Informacao({navigation, route}) {
         }
     }
 
+    async function deletarTudo(){
+        await AsyncStorage.clear();
+        setCadastros([]);
+    }
+
 
 
 
@@ -125,10 +131,16 @@ export default function Informacao({navigation, route}) {
                         </View>
                     ) : (
                     <>
-
                     </>
                     )
                 ))}
+                    <View style={styles.botao}>
+                        <TouchableOpacity onPress={deletarTudo}>
+                            <Text style={styles.textoBotao}>
+                                Deletar tudo
+                            </Text>
+                        </TouchableOpacity>
+                    </View>
         </View>):(
         <View style={styles.boxLoading}>
             <Text style={styles.textoLoading}>
@@ -198,5 +210,22 @@ const styles = StyleSheet.create({
         flexDirection: 'row',
         justifyContent: 'space-around',
         alignItems: 'center',
+    },
+    icon:{
+        margin: 10,
+    },
+    botao:{
+        width: '90%',
+        marginTop: 50,
+        height: 50,
+        alignItems: 'center',
+        justifyContent: 'center',
+        backgroundColor: '#141C83',
+        borderRadius: 12,
+    },
+    textoBotao:{
+        fontSize: 25,
+        fontWeight: 'bold',
+        color: '#ffffffff',
     },
 });
