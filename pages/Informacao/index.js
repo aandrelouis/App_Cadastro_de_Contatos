@@ -83,6 +83,8 @@ export default function Informacao({navigation, route}) {
                 
                 if(dadosFormatados != null){
                     const dadosJson = JSON.parse(dadosFormatados);
+                    //adiciona o id no objeto
+                    dadosJson.id = i;
                     dados.push(dadosJson);
                 }
             }
@@ -97,6 +99,10 @@ export default function Informacao({navigation, route}) {
         setCadastros([]);
     }
 
+    async function deletar(id){     
+        await AsyncStorage.removeItem(`@${id}`);
+        loadCadastros();
+    }
 
 
 
@@ -130,6 +136,11 @@ export default function Informacao({navigation, route}) {
                             <ViewEditada identificador={"Número"} valor={cadastro.numero}/>
                             <ViewEditada identificador={"Bairro"} valor={cadastro.bairro}/>
                             <ViewEditada identificador={"Complemento"} valor={cadastro.complemento}/>
+                            <TouchableOpacity onPress={() => deletar(cadastro.id)}>
+                                <Text style={styles.icon}>
+                                    <Icon name="trash" size={20} color="red" />
+                                </Text>
+                            </TouchableOpacity>
                         </View>
                     ) : (
                     <>

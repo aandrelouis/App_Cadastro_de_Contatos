@@ -213,6 +213,11 @@ export default function Cadastro({ navigation }) {
         </View>
       </Modal>
 
+
+      {/* Modal para mostrar a tela de confirmação, 
+        mostra todas as informações que foram preenchidas
+        e permite cancelar ou salvar
+      */}
       <Modal
         animationType="slide"
         transparent={true}
