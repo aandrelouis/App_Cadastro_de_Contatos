@@ -1,4 +1,7 @@
-import { StyleSheet, Text, View, TextInput, Button, ScrollView, TouchableOpacity , Image, Alert} from 'react-native';
+import { StyleSheet, 
+        Text, View, TextInput, 
+        Button, ScrollView, 
+        TouchableOpacity , Image, Alert, Modal, Pressable} from 'react-native';
 import {useState} from 'react';
 import InputPadrao from '../../components/Input/index';
 import Cep from 'cep-promise';
@@ -14,6 +17,8 @@ export default function Cadastro({ navigation }) {
   const [complemento, setComplemento] = useState('');
   const [bairro, setBairro] = useState('');
   const [logradouro, setLogradouro] = useState('');
+  const [modalVisible, setModalVisible] = useState(false);
+  const [problema, setProblema] = useState("");
   
   
 
@@ -45,27 +50,33 @@ export default function Cadastro({ navigation }) {
     }
     
     if(nome == ""){
-      Alert.alert('Preencha o campo nome');
+      setProblema("O campo nome é obrigatório");
+      setModalVisible(true);
       return false;
     }
     else if(telefone == '' || telefone.length < 14){
-      Alert.alert('Preencha o campo telefone com 14 dígitos','Formato: (XX)XXXXX-XXXX');
+      setProblema("Preencha o campo telefone com 14 dígitos,Formato: (XX)XXXXX-XXXX");
+      setModalVisible(true);
       return false;
     }
     else if(cep == ''){
-      Alert.alert('Preencha o campo cep com 8 digitos');
+      setProblema("Preencha o campo cep com 8 digitos");
+      setModalVisible(true);
       return false;
     }
     else if(numero == ''){
-      Alert.alert('Preencha o campo numero');
+      setProblema("Preencha o campo numero");
+      setModalVisible(true);
       return false;
     }
     else if(logradouro == '' || logradouro == null || logradouro.length < 10){
-      Alert.alert('Preencha o campo logradouro com no mínimo 10 caracteres');
+      setProblema("Preencha o campo logradouro com no mínimo 10 caracteres");
+      setModalVisible(true);
       return false;
     }
     else if(cep == '' || cep == null || cep.length < 8){
-      Alert.alert('Preencha o campo cep com no mínimo 8 caracteres');
+      setProblema("Preencha o campo CEP com no mínimo 8 caracteres");
+      setModalVisible(true);
       return false;
     }
     else{
@@ -157,6 +168,33 @@ export default function Cadastro({ navigation }) {
       </View>
 
     </ScrollView>   
+
+    {/* Modal para mostrar as validações dos campos obrigatorios */}
+    <Modal
+        animationType="slide"
+        transparent={true}
+        visible={modalVisible}
+        onRequestClose={() => {
+          Alert.alert("Modal has been closed.");
+          setModalVisible(!modalVisible);
+        }}
+        >
+        <View style={styles.viewTelaModal}>
+            <View style={styles.modalView}>
+              <Text>{problema}</Text>
+              <Pressable
+                style={[styles.buttonModal, styles.buttonClose]}
+                onPress={() => {setModalVisible(!modalVisible)}}
+                >
+                <Text style={styles.textStyle}>OK</Text>
+              </Pressable>
+          </View>
+        </View>
+      </Modal>
+
+
+
+
     </View>
   );
 }
@@ -216,5 +254,43 @@ const styles = StyleSheet.create({
   },
   Alura:{
     color: '#141C83',
-  }
+  },
+  modalView: {
+    margin: 20,
+    backgroundColor: "white",
+    borderRadius: 20,
+    padding: 35,
+    alignItems: "center",
+    shadowColor: "#000",
+    shadowOffset: {
+      width: 0,
+      height: 2
+    },
+    shadowOpacity: 0.25,
+    shadowRadius: 4,
+    elevation: 5
+  },
+  buttonModal: {
+    borderRadius: 12,
+    padding: 10,
+    elevation: 4
+  },
+  buttonClose: {
+    backgroundColor: "#141C83",
+    marginTop: 10,
+    marginBottom: 10,
+    alignSelf: "center",
+    width: '90%',
+
+  },
+  textStyle: {
+    color: "#ffffffff",
+    fontWeight: "bold",
+    textAlign: "center"
+  },
+  viewTelaModal: {
+    flex: 1,
+    alignItems: "center",
+    justifyContent: "center",
+  },
 });
