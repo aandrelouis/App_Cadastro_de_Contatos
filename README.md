@@ -1,8 +1,9 @@
 # Anota Aí
 
 
+## Prévia
 
-![foto3](https://github.com/aandrelouis/Pong-game/blob/main/imgs/foto3.jpeg
+![foto3](https://github.com/aandrelouis/App_Cadastro_de_Empresas/blob/main/img/App1.svg)
 
 
 ## :rocket: Tecnologias
