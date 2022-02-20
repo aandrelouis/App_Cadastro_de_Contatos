@@ -31,7 +31,7 @@ $ cd App_Cadastro_de_Empresas
 $ npm install
 # Execute
 $ expo start
-
+```
 
 
 
