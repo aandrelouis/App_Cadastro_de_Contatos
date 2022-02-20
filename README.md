@@ -52,4 +52,4 @@ $ expo start
 [expo]: https://expo.io/
 [rn]: https://facebook.github.io/react-native/
 [yarn]: https://yarnpkg.com/
-.[apk]: https://drive.google.com/drive/folders/1snCT9Ih-hf2-ciqQ2VJ2nDnatd0deYN8?usp=sharing
+[apk]: https://drive.google.com/drive/folders/1snCT9Ih-hf2-ciqQ2VJ2nDnatd0deYN8?usp=sharing
