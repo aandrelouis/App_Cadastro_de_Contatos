@@ -3,7 +3,7 @@
 
 
 <h1 align="center">
-    <img alt="Demonstracao" title="Demonstracao" src="img/apresentacao.gif" width="400px" />
+    <img alt="Demonstracao" title="Demonstracao" src="img/apresentacao.gif" width="400px" heigth="200px" />
 </h1>
 
 ## Prévia
