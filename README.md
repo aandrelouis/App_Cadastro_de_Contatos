@@ -1,5 +1,10 @@
 # Anota Aí
 
+
+
+![foto3](https://github.com/aandrelouis/Pong-game/blob/main/imgs/foto3.jpeg
+
+
 ## :rocket: Tecnologias
 
 Esse projeto foi desenvolvido com a utilização das seguintes tecnologias:
