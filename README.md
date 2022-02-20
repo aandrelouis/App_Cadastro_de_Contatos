@@ -1,6 +1,11 @@
 # Anota Aí
 
 
+
+<h1 align="center">
+    <img alt="Demonstracao" title="Demonstracao" src="img/apresentacao.gif" width="400px" />
+</h1>
+
 ## Prévia
 
 ![foto3](https://github.com/aandrelouis/App_Cadastro_de_Empresas/blob/main/img/App1.svg)
