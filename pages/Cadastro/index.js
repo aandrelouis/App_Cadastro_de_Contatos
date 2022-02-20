@@ -44,7 +44,7 @@ export default function Cadastro({ navigation }) {
 
   // função para colocar todos os dados do formulário em um objeto
   // Depois fazer uma verificação para ver se todas validações foram feitas
-  //depois chama a rota de informações enviando o objeto como parâmetro
+  //depois chama o modal final para revisar os dados
   function handleSubmit(){    
     if(nome == ""){
       setProblema("O campo nome é obrigatório");
@@ -53,11 +53,6 @@ export default function Cadastro({ navigation }) {
     }
     else if(telefone == '' || telefone.length < 14){
       setProblema("Preencha o campo telefone com 14 dígitos,Formato: (XX)XXXXX-XXXX");
-      setModalVisible(true);
-      return false;
-    }
-    else if(cep == ''){
-      setProblema("Preencha o campo cep com 8 digitos");
       setModalVisible(true);
       return false;
     }
@@ -77,7 +72,6 @@ export default function Cadastro({ navigation }) {
       return false;
     }
     else{
-   
       setModalFinal(true);
       //navigation.navigate('Informacao', {dados});
     }

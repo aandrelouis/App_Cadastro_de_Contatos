@@ -4,11 +4,12 @@
     "slug": "anotaAi",
     "version": "1.0.0",
     "orientation": "portrait",
-    "icon": "./assets/icon.png",
+    "icon": "./assets/logo/logo.png",
     "splash": {
-      "image": "./assets/logo/anotaLogo.png",
+      "image": "./assets/logo/logo.png",
       "resizeMode": "contain",
       "backgroundColor": "#ffffff"
+    
     },
     "updates": {
       "fallbackToCacheTimeout": 0
@@ -21,9 +22,11 @@
     },
     "android": {
       "adaptiveIcon": {
-        "foregroundImage": "./assets/adaptive-icon.png",
+        "foregroundImage": "./assets/logo/logo.png",
         "backgroundColor": "#FFFFFF"
-      }
+      },
+      "package": "com.anotaAi",
+      "versionCode": 1
     },
     "web": {
       "favicon": "./assets/favicon.png"

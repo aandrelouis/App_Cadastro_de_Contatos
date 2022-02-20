@@ -71,7 +71,6 @@ export default function Informacao({navigation, route}) {
 
         if(quantidade == null || quantidade == '0'){
             setCadastros([]);
-            console.log('Não tem cadastros');
             setLoading(false);
         }
         else if(quantidade != null){
