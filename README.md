@@ -2,7 +2,7 @@
    Anota Aí
 </h1>
 
-Aplicação criada para tornar mais prático o cadastro de empresas e depois a consulta a essas informações.
+Aplicação criada para tornar mais prático o cadastro de contatos e depois a consulta a essas informações.
 
 
 <h1 align="center">
@@ -33,9 +33,9 @@ No terminal, digite os comandos a seguir:
 
 ```bash
 # Clonar esse repositório
-$ git clone https://github.com/aandrelouis/App_Cadastro_de_Empresas.git
+$ git clone https://github.com/aandrelouis/App_Cadastro_de_Contatos.git
 # Vá para o ropositório
-$ cd App_Cadastro_de_Empresas
+$ cd App_Cadastro_de_Contatos
 # Instale as dependências
 $ npm install
 # Execute
