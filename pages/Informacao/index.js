@@ -83,7 +83,7 @@ export default function Informacao({navigation, route}) {
                 
                 if(dadosFormatados != null){
                     const dadosJson = JSON.parse(dadosFormatados);
-                    //adiciona o id no objeto
+                    //adiciona o id no objeto para poder ser indentificado
                     dadosJson.id = i;
                     dados.push(dadosJson);
                 }
@@ -115,7 +115,7 @@ export default function Informacao({navigation, route}) {
                 <View style={styles.boxHeader}> 
                     <TouchableOpacity onPress={navigateHome}>
                         <Text style={styles.icon}>
-                            <Icon name="arrow-left" size={25} color="#141C83" />
+                            <Icon name="arrow-left" size={20} color="#141C83" />
                         </Text>
                     </TouchableOpacity>
 

@@ -26,6 +26,7 @@ export const styles = StyleSheet.create({
         fontWeight: 'bold',
         margin: 10,
         color: '#000000',
+        width: '70%',
     },
     scroll:{
         width: '100%',
@@ -54,7 +55,7 @@ export const styles = StyleSheet.create({
     boxHeader:{
         width: '90%',
         flexDirection: 'row',
-        justifyContent: 'space-around',
+        justifyContent: 'space-between',
         alignItems: 'center',
     },
     icon:{
