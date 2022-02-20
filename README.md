@@ -1,9 +1,9 @@
 # Anota Aí
-
+Aplicação criada para tornar mais prático o cadastro de empresas e depois a consulta a essas informações.
 
 
 <h1 align="center">
-    <img alt="Demonstracao" title="Demonstracao" src="img/apresentacao.gif" width="400px" heigth="50px" />
+    <img alt="Demonstracao" title="Demonstracao" src="img/apresentacao.gif" width="400px" />
 </h1>
 
 ## Prévia
