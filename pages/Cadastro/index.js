@@ -188,7 +188,7 @@ const styles = StyleSheet.create({
       height: 2,
     },
     shadowOpacity: 0.4,
-    elevation: 10,
+    elevation: 8,
   },
   scroll:{
     width: '100%',

@@ -1,12 +1,19 @@
 import { useEffect, useState } from 'react';
-import { StyleSheet, Text, View, TextInput, Button, ScrollView } from 'react-native';
+import { StyleSheet, Text, View, TextInput, Button, ScrollView,TouchableOpacity } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import ViewEditada from '../../components/View/index';
+import Icon from 'react-native-vector-icons/FontAwesome';
 
 
 export default function Informacao({navigation, route}) {
     const [cadastros, setCadastros] = useState([]);
     const [loading, setLoading] = useState(false);
+
+
+    function navigateHome() {
+        navigation.navigate('Home');
+    }
+
 
     //Essa função vai receber os dados do cadastro e salvar no AsyncStorage
     //Vai executar logo quando entra nessa pagina
@@ -91,10 +98,17 @@ export default function Informacao({navigation, route}) {
         {(loading==false)?
         (
             <View style={styles.boxInformation}>
-                <Text style={styles.texto}>
-                    Informações
-                </Text>
+                <View style={styles.boxHeader}> 
+                    <TouchableOpacity onPress={navigateHome}>
+                        <Text style={styles.icon}>
+                            <Icon name="arrow-left" size={25} color="#141C83" />
+                        </Text>
+                    </TouchableOpacity>
 
+                    <Text style={styles.texto}>
+                        Informações
+                    </Text>
+                </View>
                 {/*Percorre o array de cadastros e mostra na tela*/}
                 {cadastros?.map((cadastro, index) => (
                     cadastro != null ? (
@@ -141,7 +155,12 @@ const styles = StyleSheet.create({
         borderRadius: 12,
         width: '90%',
         shadowColor: 'grey',
-        elevation: 5,
+        shadowOffset: {
+            width: 0,
+            height: 2,
+          },
+        shadowOpacity: 0.4,
+        elevation: 8,
         alignItems: 'center',
     },
     texto: {
@@ -173,5 +192,11 @@ const styles = StyleSheet.create({
         fontWeight: 'bold',
         margin: 10,
         color: '#141C83',
+    },
+    boxHeader:{
+        width: '90%',
+        flexDirection: 'row',
+        justifyContent: 'space-around',
+        alignItems: 'center',
     },
 });

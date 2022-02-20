@@ -38,7 +38,12 @@ const styles = StyleSheet.create({
       color: '#000000',
       fontSize: 16,
       shadowColor: 'grey',
-      elevation: 3,
+      shadowOffset: {
+        width: 0,
+        height: 2,
+      },
+      shadowOpacity: 0.4,
+      elevation: 8,
     },
     scroll:{
       width: '100%',
