@@ -31,3 +31,15 @@ $ cd App_Cadastro_de_Empresas
 $ npm install
 # Execute
 $ expo start
+
+
+
+
+
+
+
+
+[nodejs]: https://nodejs.org/
+[expo]: https://expo.io/
+[rn]: https://facebook.github.io/react-native/
+[yarn]: https://yarnpkg.com/
