@@ -13,7 +13,8 @@ Aplicação criada para tornar mais prático o cadastro de contatos e depois a c
 
 ![foto3](https://github.com/aandrelouis/App_Cadastro_de_Empresas/blob/main/img/App1.svg)
 
-- [Apk][apk]
+Link para Download do aplicativo:
+- [Link][apk]
 
 ## :rocket: Tecnologias
 
